@@ -1,0 +1,16 @@
+.inicio {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Altura de la ventana del navegador */
+    overflow: hidden;
+}
+
+.imagen-inicio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para que ocupe todo el espacio disponible sin deformarse */
+    z-index: -1; /* Coloca la imagen debajo del navbar */
+}

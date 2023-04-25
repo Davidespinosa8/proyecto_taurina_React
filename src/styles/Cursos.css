@@ -1,0 +1,35 @@
+.curso {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem;
+    background-color: black; 
+    margin-top: 100px;
+}
+
+.curso-imagen-container {
+    width: 40%;
+    max-width: 300px; /* Ajusta según el tamaño máximo del dispositivo que deseas mostrar */
+    border: 1px solid #ccc;
+    padding: 1rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.curso-imagen {
+    width: 100%;
+    height: auto;
+}
+
+.curso-info {
+    width: 50%;
+}
+
+.curso-beneficios {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.curso-costo {
+    font-weight: bold;
+}
