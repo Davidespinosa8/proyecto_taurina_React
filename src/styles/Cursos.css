@@ -1,35 +1,58 @@
 .curso {
+    margin: 50px 0 50px;
+    background-color: black;
+    border: 5px, solid, magenta;
+    border-radius: 10px 100px / 120p;
+    -webkit-border-radius: 10px 100px / 120px;
+    -moz-border-radius: 10px 100px / 120px;
+    -ms-border-radius: 10px 100px / 120px;
+    -o-border-radius: 10px 100px / 120px;
+    box-shadow:  0 0 5px magenta,
+    0 0 10px magenta,
+    0 0 20px magenta;   
+}
+
+.curso-contenedor {
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
     align-items: center;
-    padding: 2rem;
-    background-color: black; 
-    margin-top: 100px;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
 }
 
 .curso-imagen-container {
-    width: 40%;
-    max-width: 300px; /* Ajusta según el tamaño máximo del dispositivo que deseas mostrar */
-    border: 1px solid #ccc;
-    padding: 1rem;
+    max-width: 500px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
 }
 
 .curso-imagen {
-    width: 100%;
+    width: 500px;
     height: auto;
 }
 
 .curso-info {
-    width: 50%;
+    margin-left: 40px;
+    max-width: 150px;
+    text-align: initial;
+    color:white;
 }
 
 .curso-beneficios {
     list-style-type: disc;
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
+    text-align:initial;
+    color: white;
+}
+
+.curso-beneficios .h3{
+    text-decoration: underline;
+    color: white;
 }
 
 .curso-costo {
     font-weight: bold;
+    color: white;
 }

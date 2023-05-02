@@ -1,27 +1,28 @@
 import React from 'react';
-import { NavLink, useMatch } from 'react-router-dom';
 import '../styles/Navbar.css';
 
-const Navbar = () => {
-    const matchInicio = useMatch('/');
-    const matchCursos = useMatch('/cursos');
-    const matchGaleria = useMatch('/galeria');
-    const matchAgenda = useMatch('/agenda');
-    const matchContacto = useMatch('/contacto');
-
+function Navbar() {
     return (
-        <nav className="navbar">
+        <nav className='navbar'>
             <h1 className="fuente-logo">Taurina</h1>
-            <div className="nav-link-container">
-                <NavLink to="/" className={`nav-link${matchInicio ? ' active' : ''}`} end replace>Inicio</NavLink>
-                <NavLink to="/cursos" className={`nav-link${matchCursos ? ' active' : ''}`} replace>Cursos</NavLink>
-                <NavLink to="/galeria" className={`nav-link${matchGaleria ? ' active' : ''}`} replace>Galería</NavLink>
-                <NavLink to="/agenda" className={`nav-link${matchAgenda ? ' active' : ''}`} replace>Agenda</NavLink>
-                <NavLink to="/contacto" className={`nav-link${matchContacto ? ' active' : ''}`} replace>Contacto</NavLink>
-
-            </div>
+                <div className='nav-link-container'>
+                    <ul className='nav-links'>
+                        <li>
+                        <a href="#inicio" className='nav-link'>Inicio</a>
+                        </li>
+                        <li>
+                        <a href="#cursos" className='nav-link'>Cursos</a>
+                        </li>
+                        <li>
+                        <a href="#galeria" className='nav-link'>Galeria</a>
+                        </li>
+                        <li>
+                        <a href="#contacto" className='nav-link'>Contacto</a>
+                        </li>
+                    </ul>
+                </div>
         </nav>
     );
-};
+}
 
 export default Navbar;
