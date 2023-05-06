@@ -1,0 +1,66 @@
+.agenda {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ff00ff;
+    text-align: center;
+    padding: 2rem;
+}
+
+button {
+    background-color: #ff00ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 1rem;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #ff66ff;
+}
+
+.date-picker {
+    /* Estilos para el selector de fecha */
+    margin-bottom: 1rem;
+}
+
+.whatsapp-button {
+    /* Estilos para el botón de WhatsApp */
+    background-color: #25d366;
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.whatsapp-button:hover {
+    /* Estilos para el botón de WhatsApp al pasar el mouse por encima */
+    background-color: #00bfa5;
+}
+
+.available-slots {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.available-slots li {
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid fuchsia;
+    border-radius: 5px;
+    color: fuchsia;
+    background-color: black;
+    cursor: pointer;
+}
+

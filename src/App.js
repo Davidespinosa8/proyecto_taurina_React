@@ -1,11 +1,12 @@
 import React from "react";
-import "./App.css";
 import Navbar from "./components/Navbar";
 import Inicio from "./pages/Inicio";
 import Cursos from "./pages/Cursos";
 import Galeria from "./pages/Galeria";
+import Agenda from "./pages/Agenda";
 import Contacto from "./pages/Contacto";
 import Footer from "./components/Footer";
+
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Inicio />
       <Cursos />
       <Galeria />
+      <Agenda />
       <Contacto />
       <Footer />
     </div>

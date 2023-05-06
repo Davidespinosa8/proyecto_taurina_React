@@ -28,7 +28,7 @@ const settings = {
     autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
-    slidesMargin: 8,
+    slidesMargin: 0,
 };
 
 const openModal = (image) => {

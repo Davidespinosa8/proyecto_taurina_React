@@ -1,0 +1,21 @@
+.nav-link {
+    font-family: 'Changa','Kalam','Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin: 3rem;
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -ms-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    text-shadow: 6px 6px 6px rgba(0, 0, 0, 0.5);
+}
+
+.nav-link-container.active {
+    overflow-x: hidden;
+}

@@ -1,5 +1,5 @@
 .curso {
-    margin: 50px 0 50px;
+    margin: 250px 0 250px;
     background-color: black;
     border: 5px, solid, magenta;
     border-radius: 10px 100px / 120p;
@@ -9,45 +9,70 @@
     -o-border-radius: 10px 100px / 120px;
     box-shadow:  0 0 5px magenta,
     0 0 10px magenta,
-    0 0 20px magenta;   
+    0 0 20px magenta;
+    overflow: hidden;
 }
+
 
 .curso-contenedor {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     gap: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .curso-contenedor {
+        flex-direction: row;
+    }
+}
+
+.curso-detalles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: initial;
+    color: white;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .curso-detalles {
+        max-width: unset;
+    }
 }
 
 .curso-imagen-container {
-    max-width: 500px;
+    max-width: 700px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 20px;
 }
 
 .curso-imagen {
-    width: 500px;
+    width: 100%;
     height: auto;
 }
 
-.curso-info {
-    margin-left: 40px;
-    max-width: 150px;
+.curso-detalles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     text-align: initial;
-    color:white;
+    color: white;
 }
 
 .curso-beneficios {
     list-style-type: disc;
-    margin-bottom: 10px;
-    text-align:initial;
-    color: white;
+    margin-bottom: 15px;
 }
 
-.curso-beneficios .h3{
+.curso-beneficios h2 {
     text-decoration: underline;
     color: white;
 }
@@ -55,4 +80,5 @@
 .curso-costo {
     font-weight: bold;
     color: white;
+    text-align: center;
 }

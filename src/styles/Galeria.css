@@ -9,4 +9,18 @@
     width: 100%;
     height: auto;
     cursor: pointer;
+    margin: 0 4px;
 }
+
+@media (max-width: 1024px) {
+    .galeria {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .galeria {
+        padding: 0.5rem;
+    }
+}
+

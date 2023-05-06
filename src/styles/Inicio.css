@@ -14,3 +14,48 @@
     object-fit: cover; /* Ajusta la imagen para que ocupe todo el espacio disponible sin deformarse */
     z-index: -1; /* Coloca la imagen debajo del navbar */
 }
+
+.contenido-inicio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.contenido-inicio h1 {
+    font-size: 48px;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.contenido-inicio p {
+    font-size: 24px;
+    color: white;
+}
+
+/* Para tablets y dispositivos con pantallas de tamaño medio */
+@media (max-width: 768px) {
+    .contenido-inicio h1 {
+        font-size: 36px;
+    }
+    
+    .contenido-inicio p {
+        font-size: 18px;
+    }
+}
+
+/* Para dispositivos móviles y pantallas pequeñas */
+@media (max-width: 480px) {
+    .contenido-inicio h1 {
+        font-size: 24px;
+    }
+    
+    .contenido-inicio p {
+        font-size: 16px;
+    }
+}
+
+
