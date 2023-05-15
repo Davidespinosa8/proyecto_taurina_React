@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Inicio.css";
-import herramientas from "../Imagenes/herramientas.jpg";
+import herramientas from "../Imagenes/Taurina_IMG/Taurina_Nails.jpeg";
 
 const Inicio = () => {
     return (

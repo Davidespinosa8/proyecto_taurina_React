@@ -45,13 +45,14 @@ button:hover {
 }
 
 .available-slots {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
+    background-color: black;
+    color: fuchsia;
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid fuchsia;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .available-slots li {
@@ -64,3 +65,8 @@ button:hover {
     cursor: pointer;
 }
 
+.available-slots:hover {
+    background-color: fuchsia;
+    color: black;
+    box-shadow: 0 0 10px fuchsia, 0 0 20px fuchsia, 0 0 30px fuchsia;
+}

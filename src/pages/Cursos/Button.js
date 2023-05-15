@@ -1,12 +1,17 @@
-import React from 'react';
-import './Button.css';
+import React from "react";
+import "./Button.css";
 
-const Button = props => {
-    return(
-        <a href={props.href} class='button' target="_blank" rel="noopener noreferrer">
-            {props.content}
-        </a>
-    );
-}
+const Button = (props) => {
+  return (
+    <button
+      className="button"
+      onClick={props.onClick}
+      disabled={props.disabled}
+    >
+      {props.content}
+    </button>
+  );
+};
 
 export default Button;
+

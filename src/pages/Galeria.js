@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Slider from 'react-slick';
 import '../styles/Galeria.css';
 import ModalImage from './ModalImage';
-
-import imagen1 from '../Imagenes/Leonardo_Diffusion_a_cell_frame_a_iphone_frame_acrilic_nails_s_0.jpg';
-import imagen2 from '../Imagenes/Leonardo_Diffusion_a_cell_frame_a_iphone_frame_picture_within_0.jpg';
-import imagen3 from '../Imagenes/Leonardo_Diffusion_a_cell_frame_a_iphone_frame_picture_within_1.jpg';
-import imagen4 from '../Imagenes/Leonardo_Diffusion_Only_a_cell_frame_a_iphone_frame_picture_wi_0.jpg';
+import imagen1 from '../Imagenes/Taurina_IMG/Taurina_Nails2.jpeg';
+import imagen2 from '../Imagenes/Taurina_IMG/Taurina_Nails3.jpeg';
+import imagen3 from '../Imagenes/Taurina_IMG/Taurina_Nails4.jpeg';
+import imagen4 from '../Imagenes/Taurina_IMG/Taurina_Nails5.jpeg';
+import imagen5 from '../Imagenes/Taurina_IMG/Taurina_Nails6.jpeg';
 
 const Galeria = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +16,8 @@ const images = [
     imagen1,
     imagen2,
     imagen3, 
-    imagen4
+    imagen4,
+    imagen5
 ];
 
 const settings = {

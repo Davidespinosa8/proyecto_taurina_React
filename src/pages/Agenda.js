@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import { format, addDays } from "date-fns";
-import { AiOutlineWhatsApp } from "react-icons/ai";
 import "../styles/Agenda.css";
 import "react-datepicker/dist/react-datepicker.css";
-import Turno from "./Agenda/Turnos";
-import FormularioCita from "./Agenda/FormularioCita";
+import firebase, { getTurnosByDate, addTurno } from "./firebase";
+import AppointmentForm from "./Agenda/AppointmentForm";
+
+
 
 const WEEKDAYS = {
     MONDAY: 1,
@@ -28,7 +29,7 @@ const SATURDAY_HOURS = {
     interval: 30, // en minutos
 };
 
-const getAvailableSlots = (date) => {
+const generateAllSlots = (date) => {
     const day = date.getDay();
     const hoursConfig = day === WEEKDAYS.SATURDAY ? SATURDAY_HOURS : WEEKDAY_HOURS;
 
@@ -49,20 +50,36 @@ const getAvailableSlots = (date) => {
     return slots;
 };
 
-const Agenda = () => {
+const getAvailableSlots = async (date) => {
+    const dateString = format(date, "dd/MM/yyyy");
+    const querySnapshot = await getTurnosByDate(dateString);
+    const reservedSlots = querySnapshot.docs.map((doc) => doc.data().hora);
+    const allSlots = generateAllSlots(date);
+    return allSlots.filter((slot) => !reservedSlots.includes(slot));
+};
 
+const Agenda = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [showForm, setShowForm] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     const [availableSlots, setAvailableSlots] = useState([]);
-
+    // eslint-disable-next-line no-unused-vars
+    const [userData, setUserData] = useState({});
+    const [isReserved, setIsReserved] = useState(false);
+    const [isThankYouMessageVisible, setIsThankYouMessageVisible] = useState(false);
+    
     useEffect(() => {
-        setAvailableSlots(getAvailableSlots(new Date()));
+        const fetchData = async () => {
+        const slots = await getAvailableSlots(new Date());
+        setAvailableSlots(slots);
+        };
+        fetchData();
     }, []);
 
-    const handleDateChange = (date) => {
+    const handleDateChange = async (date) => {
         setStartDate(date);
-        setAvailableSlots(getAvailableSlots(date));
+        const slots = await getAvailableSlots(date);
+        setAvailableSlots(slots);
     };
 
     const handleSlotClick = (slot) => {
@@ -71,22 +88,58 @@ const Agenda = () => {
         setAvailableSlots(availableSlots.filter((availableSlot) => availableSlot !== slot));
     };
 
-    const handleWhatsApp = () => {
-        if (!selectedSlot) {
-            alert("Por favor, seleccione un turno antes de continuar.");
-            return;
+    const handleFormSubmit = (data) => {
+        if (data.name && data.lastName && data.phone) {
+    
+        const turno = {
+            fecha: format(startDate, "dd/MM/yyyy"),
+            hora: selectedSlot.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+            }),
+            ...data,
+        };
+    
+        addTurno(turno).then(async () => {
+            setIsReserved(true);
+            setShowForm(false);
+            setSelectedSlot(null);
+            setIsThankYouMessageVisible(true);
+            const slots = await getAvailableSlots(startDate);
+            setAvailableSlots(slots);
+        });
+        } else {
+            alert("Por favor, complete el formulario antes de continuar.");
         }
-
-        const message = `Hola, me gustaría reservar un turno para manicura el ${format(
-            startDate,
-            "dd/MM/yyyy"
-        )} a las ${selectedSlot.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-        })}.`;
-        const url = `https://wa.me/+542364357363?text=${encodeURIComponent(message)}`;
-        window.open(url, "_blank");
     };
+    
+    const handleWhatsApp = () => {
+        if (isReserved) {
+            const turno = {
+                Fecha: format(startDate, "dd/MM/yyyy"),
+                Hora: selectedSlot.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                }),
+                ...userData,
+            };
+    
+            const message = `¡Muchas Gracias por elegir Taurina Nails! El turno que solicitaste es para el ${turno.Fecha} a las ${turno.Hora}.`;
+    
+            // Número de teléfono del usuario
+            const userPhone = userData.phone.startsWith('+') || userData.phone.startsWith('54') ? userData.phone : `+54${userData.phone}`;
+            const userUrl = `https://wa.me/${userPhone}?text=${encodeURIComponent(message)}`;
+            window.open(userUrl, "_blank");
+    
+            // Tu número de teléfono
+            const myPhone = "+542364357363"; // Reemplaza esto con tu número de teléfono
+            const myUrl = `https://wa.me/${myPhone}?text=${encodeURIComponent(message)}`;
+            window.open(myUrl, "_blank");
+        } else {
+            alert("Por favor, complete el formulario y reserve un turno antes de continuar.");
+        }
+    };
+    
     
     return (
         <div className="agenda" id="agenda">
@@ -101,19 +154,30 @@ const Agenda = () => {
                     dateFormat="dd/MM/yyyy"
                 />
             </div>
-            <ul className="available-slots">
+            <select className="available-slots" onChange={(e) => handleSlotClick(new Date(e.target.value))}>
+                <option value="">Seleccione un turno</option>
                 {availableSlots.map((slot, index) => (
-                    <Turno key={index} slot={slot} onClick={() => handleSlotClick(slot)} />
+                    <option key={index} value={slot.toISOString()}>
+                        {slot.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                    </option>
                 ))}
-            </ul>
+            </select>
             {showForm && (
-                <FormularioCita />
+            <AppointmentForm
+                onSubmit={handleFormSubmit}
+                selectedSlot={selectedSlot}
+                startDate={startDate}
+                setIsReserved={setIsReserved}
+                handleWhatsApp={handleWhatsApp}
+            />
             )}
-            <button className="whatsapp-button" onClick={handleWhatsApp}>
-                <AiOutlineWhatsApp /> Reservar turno
-            </button>
+            {isThankYouMessageVisible && (
+                <p className="thank-you-message">
+                    ¡Muchas Gracias por elegir Taurina Nails! El turno que solicitaste es para el {format(startDate, "dd/MM/yyyy")} a las {selectedSlot?.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}.
+                </p>
+            )};
         </div>
     );
-};    
-    
+};
+
 export default Agenda;
